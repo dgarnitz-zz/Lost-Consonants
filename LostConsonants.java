@@ -20,6 +20,10 @@ public class LostConsonants {
 	}
 
 	public static ArrayList<String> removeConsonants(String input) {
+		//remove a consonant from the whole input String
+		//then split the string
+		//then compare each word in the string to the dictionary
+		//then if they all evaluate to true, print the whole string (with consonant removed)
 		String[] parsedUserInput = parsedInput(input);
 		ArrayList<String> storingList = new ArrayList<String>();
 
