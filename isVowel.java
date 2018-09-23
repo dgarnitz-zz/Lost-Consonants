@@ -16,9 +16,6 @@ public class isVowel{
       case 'O':
         isVowel = true;
         break;
-      case 'Y':
-        isVowel = true;
-        break;
       case 'a':
         isVowel = true;
       break;
@@ -32,9 +29,6 @@ public class isVowel{
         isVowel = true;
         break;
       case 'u':
-        isVowel = true;
-        break;
-      case 'y':
         isVowel = true;
         break;
       default:

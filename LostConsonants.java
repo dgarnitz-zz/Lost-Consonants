@@ -7,48 +7,58 @@ public class LostConsonants {
 		return userInput.split(" ");
 	}
 
-	public static ArrayList<String> generateAlternatives(String word, StringBuilder myWords, ArrayList<String> newWordList){
-		for(int i=0; i<word.length(); i++){
-			char placeholder = word.charAt(i);
-			if(!isVowel.isVowel(placeholder)){
-				myWords.deleteCharAt(i);
-				newWordList.add(myWords.toString());
-				myWords.replace(0, word.length(), word);
-			}
+	public static String generateAlternatives(String word, int position){
+		StringBuilder myWords = new StringBuilder(word);
+		char placeholder = word.charAt(position);
+		if(!isVowel.isVowel(placeholder)){
+			myWords.deleteCharAt(position);
+			word = myWords.toString();
+			return word;
+
+			//newWordList.add(myWords.toString());
+			//myWords.replace(0, word.length(), word);
 		}
-		return newWordList;
+		return word;
 	}
 
-	public static ArrayList<String> removeConsonants(String input) {
+	public static int removeConsonants(String input, ArrayList<String> lines) {
 		//remove a consonant from the whole input String
 		//then split the string
 		//then compare each word in the string to the dictionary
 		//then if they all evaluate to true, print the whole string (with consonant removed)
-		String[] parsedUserInput = parsedInput(input);
-		ArrayList<String> storingList = new ArrayList<String>();
 
-		for(int j=0; j<parsedUserInput.length; j++){
+		int wordCount = 0;
 
-			String word = parsedUserInput[j];
-			StringBuilder myWords = new StringBuilder(word);
+		for(int j=0; j<input.length(); j++){
 
-			storingList = generateAlternatives(word, myWords, storingList);
-		}
+			String LostConsontantPhrase = generateAlternatives(input, j);
+			if(!LostConsontantPhrase.equals(input))
 
-		return storingList;
+				wordCount = wordCount + dictionaryComparison(lines, LostConsontantPhrase);
+			}
+
+		return wordCount;
 	}
 
-	public static ArrayList<String> dictionaryComparison(ArrayList<String> lines, ArrayList<String> myList){
-		ArrayList<String> matches = new ArrayList<String>();
-		for(int i=0; i<myList.size(); i++){
-			String currentWord = myList.get(i);
+	public static int dictionaryComparison(ArrayList<String> lines, String LostConsontantPhrase){
+		int counter = 0;
+		int wordCount = 0;
+		String[] myList = parsedInput(LostConsontantPhrase);
+		for(int i=0; i<myList.length; i++){
+
+			String currentWord = myList[i];
+
 			for(int j=0; j<lines.size(); j++){
 				if(lines.get(j).equals(currentWord)) {
-					matches.add(currentWord);
+					counter++;
 				}
 			}
 		}
-		return matches;
+		if(counter==myList.length){
+				System.out.println(LostConsontantPhrase);
+				wordCount++;
+		}
+		return wordCount;
 	}
 
 	public static void main (String[] args) {
@@ -64,23 +74,17 @@ public class LostConsonants {
 
 				ArrayList<String> lines = FileUtil.readLines(args[0]);
 
-				ArrayList<String> LostConsonantList = removeConsonants(args[1]);
+				int listSize = removeConsonants(args[1], lines);
 
-				ArrayList<String> finalList = dictionaryComparison(lines, LostConsonantList);
 				if(lines.size()==0){
 					return;
 				}
-				else if(finalList.size()==0){
+				else if(listSize==0){
 					System.out.println("Could not find any alternatives.");
 					return;
 				}
 				else{
-						int counter=0;
-						for (int i=0; i < finalList.size(); i++){
-							System.out.println(finalList.get(i));
-							counter = counter + 1;
-						}
-						System.out.println("Found " + counter + " alternatives.");
+						System.out.println("Found " + listSize + " alternatives.");
 				}
 
 		}
