@@ -19,9 +19,9 @@ public class LostConsonants {
 		return newWordList;
 	}
 
-	public static ArrayList<String> removeConsonants(String input, ArrayList<String> newWordList) {
+	public static ArrayList<String> removeConsonants(String input) {
 		String[] parsedUserInput = parsedInput(input);
-		ArrayList<String> storingList = newWordList; //not sure this is necessary - main concern is  that changes need to persist after the loop ends. can I just pass in the ArrayList argument instead of declaring anther variabke?
+		ArrayList<String> storingList = new ArrayList<String>();
 
 		for(int j=0; j<parsedUserInput.length; j++){
 
@@ -60,8 +60,7 @@ public class LostConsonants {
 
 				ArrayList<String> lines = FileUtil.readLines(args[0]);
 
-				ArrayList<String> newWordList = new ArrayList<String>(); //not sure if this is necessary - can I just instantiate it in the method and return the value?
-				ArrayList<String> LostConsonantList = removeConsonants(args[1], newWordList);
+				ArrayList<String> LostConsonantList = removeConsonants(args[1]);
 
 				ArrayList<String> finalList = dictionaryComparison(lines, LostConsonantList);
 				if(lines.size()==0){
