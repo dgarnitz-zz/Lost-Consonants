@@ -69,25 +69,25 @@ public class EnhancementOne {
 
   /**
   * Takes two string arrays, both representing parsed strings, the first being where the
-  * the lost consonant word is and the second being where the original phrase is, and
+  * the lost vowel word is and the second being where the original phrase is, and
   * finds the one word in the first array that differs in length from the word in the same spot
   * in the second array. It then calls the punctuationCleanse method on that word and returns it
-  * @param parsedLostC a string array that has been parsed from the lost consonant altered string
+  * @param parsedLostV a string array that has been parsed from the lost vowel altered string
   * @param parsedOriginal a string array that has been parsed from the original user input
   * @return a punctuation-free string (word) that will be compared against the user specified dictionary later
   */
-  public static String phraseComparison(String[] parsedLostC, String[] parsedOriginal){
-    for(int i=0; i<parsedLostC.length; i++){
-      Boolean checkLength = (parsedLostC[i].length() == parsedOriginal[i].length());
+  public static String phraseComparison(String[] parsedLostV, String[] parsedOriginal){
+    for(int i=0; i<parsedLostV.length; i++){
+      Boolean checkLength = (parsedLostV[i].length() == parsedOriginal[i].length());
       if(!checkLength){
-          parsedLostC[i] = LostConsonants.punctuationCleanse(parsedLostC[i]);
-          return parsedLostC[i];
+          parsedLostV[i] = LostConsonants.punctuationCleanse(parsedLostV[i]);
+          return parsedLostV[i];
       }
-      else if(parsedLostC.length + 1 == parsedOriginal.length){
-        return parsedLostC[i] = "Exception case of one letter word found";
+      else if(parsedLostV.length + 1 == parsedOriginal.length){
+        return parsedLostV[i] = "Exception case of one letter word found";
       }
     }
-    return "Could not find the lost consonant word";
+    return "Could not find the lost vowel word";
   }
 
   /**
@@ -97,23 +97,23 @@ public class EnhancementOne {
   * word in the ArrayList, and if it is, it prints the lost vowel altered user input string and increments an int
   * tracking how many times a phrase is printed. It then returns that int.
   * @param lines an ArrayList containing the contents of the dictionary file specified by the user
-  * @param LostConsontantPhrase a string with the lost consonant altered phrase
+  * @param LostVowelPhrase a string with the lost vowel altered phrase
   * @param input a string with the original user input
-  * @return an int that helps track how many lost consonant alternatives are created
+  * @return an int that helps track how many lost vowel alternatives are created
   */
-  public static int dictionaryComparison(ArrayList<String> lines, String LostConsontantPhrase, String input){
+  public static int dictionaryComparison(ArrayList<String> lines, String LostVowelPhrase, String input){
     int counter = 0;
-    String[] myList = LostConsonants.parsedInput(LostConsontantPhrase);
+    String[] myList = LostConsonants.parsedInput(LostVowelPhrase);
     String[] parsedOriginal = LostConsonants.parsedInput(input);
 
     String currentWord = phraseComparison(myList, parsedOriginal);
 
-    if(currentWord.equals("Could not find the lost consonant word")){
+    if(currentWord.equals("Could not find the lost vowel word")){
       return 0;
     }
 
     if(currentWord.equals("Exception case of one letter word found")){
-      System.out.println(LostConsontantPhrase);
+      System.out.println(LostVowelPhrase);
       return counter+1;
     }
 
@@ -122,7 +122,7 @@ public class EnhancementOne {
       currentWord = currentWord.toLowerCase();
       currentDictionaryEntry = currentDictionaryEntry.toLowerCase();
       if(currentDictionaryEntry.equals(currentWord)) {
-        System.out.println(LostConsontantPhrase);
+        System.out.println(LostVowelPhrase);
         return counter+1;
       }
     }
