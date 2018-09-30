@@ -78,7 +78,6 @@ public class LostConsonants {
 	*/
 	public static String punctuationCleanse(String parsedLostConsontantWord){
 		StringBuilder cleanser = new StringBuilder(parsedLostConsontantWord);
-		//ADJUST FOR FRINGE CASE OF A ONE LETTER WORD
 		int lastPosition = parsedLostConsontantWord.length()-1;
 		char placeholder = parsedLostConsontantWord.charAt(lastPosition);
 		if(placeholder == ',' || placeholder == '.'){
@@ -133,7 +132,6 @@ public class LostConsonants {
 
 		for(int j=0; j<lines.size(); j++){
 			String currentDictionaryEntry = lines.get(j);
-			//Experimental part
 			currentWord = currentWord.toLowerCase();
 			currentDictionaryEntry = currentDictionaryEntry.toLowerCase();
 			if(currentDictionaryEntry.equals(currentWord)) {
