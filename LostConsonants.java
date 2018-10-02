@@ -47,7 +47,7 @@ public class LostConsonants {
 	/**
 	* Takes a string with the user input and a String Arraylist containing the dictionary
 	* Loops through that input string and attempts to generate a "Lost Consonants" alternative
-	* If a "Lost Consonants" alternative is generated, it compares it against the dictionaryComparison
+	* If a "Lost Consonants" alternative is generated, it compares it against the dictionary
 	* If the "Lost Consonants" alternative is in the dictionary, it increments the word counter
 	* Returns an int representing the word count after iterating through the whole user input
 	* @param input string containing the user input
@@ -80,7 +80,7 @@ public class LostConsonants {
 		StringBuilder cleanser = new StringBuilder(parsedLostConsontantWord);
 		int lastPosition = parsedLostConsontantWord.length()-1;
 		char placeholder = parsedLostConsontantWord.charAt(lastPosition);
-		if(placeholder == ',' || placeholder == '.'){
+		if(placeholder == ',' || placeholder == '.' || placeholder == '!' || placeholder == '?' ){
 			cleanser.deleteCharAt(lastPosition);
 			parsedLostConsontantWord = cleanser.toString();
 			return parsedLostConsontantWord;
