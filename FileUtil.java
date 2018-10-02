@@ -27,7 +27,6 @@ public class FileUtil {
             return lines;
         } catch (FileNotFoundException e) {
             System.out.println("File not found: " + e.getMessage());
-            System.out.println("Invalid dictionary, aborting.");
         } catch (IOException e) {
             System.out.println("I/O Ooops: " + e.getMessage());
         }

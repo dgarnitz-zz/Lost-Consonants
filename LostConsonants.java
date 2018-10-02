@@ -169,6 +169,7 @@ public class LostConsonants {
 				int listSize = removeConsonants(args[1], lines);
 
 				if(lines.size() == 0){
+					System.out.println("Invalid dictionary, aborting.");
 					return;
 				}
 				else if(listSize == 0){
