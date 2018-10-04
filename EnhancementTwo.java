@@ -50,7 +50,14 @@ public class EnhancementTwo {
     String letters = "bcdfghjklmnpqrstvwxyz";
 
     for(int j=0; j<input.length()+1; j++){
-
+    	
+    	if(j==0) {
+    		letters = "BCDFGHJKLMNPQRSTVWXYZ";
+    	}
+    	else {
+    		letters = "bcdfghjklmnpqrstvwxyz";
+    	}
+    	
       for(int k=0; k<letters.length(); k++){
 
         char letter = letters.charAt(k);
